@@ -1,0 +1,18 @@
+# 构建一个镜像需要一个node环境，于是会想到以下命令
+FROM node:lts-alpine 
+
+ENV NODE_ENV=production
+ENV HOST 0.0.0.0
+# 需要一个文件夹来存放项目目录，于是
+RUN mkdir -p /app
+# 需要把项目复制到镜像里面，于是
+COPY . /app
+WORKDIR /app
+EXPOSE 3000
+
+RUN npm install
+RUN npm run build
+CMD ["npm", "start"]
+
+# 运行docker
+# docker run --name nuxt -p 8080:3000 -d minglyle/nuxt-docker:v1.0
