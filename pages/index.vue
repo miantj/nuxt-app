@@ -1,72 +1,81 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxt-demo
-      </h1>
-      <h2 class="subtitle">
-        My smashing Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="manage_page fillcontain">
+    <sidebar :isCollapse="isCollapse"></sidebar>
+
+    <!-- 页面主体 -->
+    <section class="mianBody" :class="{ paddingLeft: isCollapse }">
+      <div>
+        <headTop :isCollapse="isCollapse" @Collapse="Collapse"></headTop>
       </div>
-    </div>
+
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive :exclude="cashViews">
+          <nuxt-child :key="key" />
+        </keep-alive>
+      </transition>
+    </section>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import headTop from '../components/headTop'
+import sidebar from '../components/sidebar'
+// import { mapState } from 'vuex'
 
 export default {
+  data () {
+    return {
+      // 不缓存的组件
+      cashViews: ['editDataor'],
+      isCollapse: false,  //展开还是关闭
+    }
+  },
+  head () {
+    return {
+      title: '首页',
+    }
+  },
+
+  computed: {
+    key () {
+      return this.$route.path
+    },
+  },
+  methods: {
+    Collapse () {
+      this.isCollapse = !this.isCollapse
+    },
+  },
   components: {
-    Logo
-  }
+    headTop,
+    sidebar,
+  },
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+<style lang="less" scoped>
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.4s;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 
-.links {
-  padding-top: 15px;
+.mianBody {
+  padding-left: 200px;
+  transition: padding-left 0.44s;
+}
+.paddingLeft {
+  padding-left: 65px;
 }
 </style>

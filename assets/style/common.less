@@ -29,129 +29,115 @@ input,
 select,
 figure,
 figcaption {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-style: normal;
-    text-decoration: none;
-    border: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 
-/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-// ::-webkit-scrollbar {
-//     width: 8px;
-//     height: 0px;
-//     background-color: rgb(250, 250, 250);
-// }
-
-// /*定义滚动条轨道 内阴影+圆角*/
-// ::-webkit-scrollbar-track {
-//     -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
-//     // border-radius: 10px;
-//     background-color: rgb(250, 250, 250);
-// }
-
-// /*定义滑块 内阴影+圆角*/
-// ::-webkit-scrollbar-thumb {
-//     border-radius: 10px;
-//     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-//     background-color: rgb(194, 194, 194);
-// }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
 input[type="button"],
 input[type="submit"],
 input[type="search"],
 input[type="reset"] {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 textarea {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
 .fillcontain {
-    width: 100%;
+  width: 100%;
 }
 
 .clear:after {
-    content: '';
-    display: block;
-    clear: both;
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .clear {
-    zoom: 1;
+  zoom: 1;
 }
 
 .back_img {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .margin {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .left {
-    float: left;
+  float: left;
 }
 
 .right {
-    float: right;
+  float: right;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .main {
-    padding: 20px;
+  padding: 20px;
 }
 
 
 
 // 表格样式
 .warning-row {
-    background: oldlace !important;
+  background: oldlace !important;
 }
 
 .success-row {
-    background: #f0f9eb !important;
+  background: #f0f9eb !important;
 }
 
 .maintenance-row {
-    background: #d2e9ff !important;
+  background: #d2e9ff !important;
 }
 
 .vip-row {
-    background: #FFFFE0 !important;
+  background: #FFFFE0 !important;
 }
 
 .el-pagination {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
 }

@@ -37,16 +37,21 @@
         </el-form>
       </section>
     </transition>
-
   </div>
 </template>
 
 <script> 
+import { mapMutations } from 'vuex'
 // import { login } from '../api/getData'
 // import md5 from 'js-md5'
 // import { setLocalStore } from '@/plugins/mUtils'
 
 export default {
+  head () {
+    return {
+      title: '登录页'
+    }
+  },
   data () {
     return {
       loginForm: {
@@ -72,19 +77,21 @@ export default {
 
   },
   methods: {
-
+    ...mapMutations([
+      'USER'
+    ]),
     async submitForm (formName) {
 
       this.$refs[formName].validate(async (valid) => {
 
         if (valid) {
           // const res = await login({ "account": this.loginForm.username, "password": md5(this.loginForm.password) })
-
+          this.USER(this.loginForm.username)
           // if (res) {
-          //   this.$message({
-          //     type: 'success',
-          //     message: '登录成功'
-          //   });
+          this.$message({
+            type: 'success',
+            message: '登录成功'
+          });
           //   // 成功更新token
           //   setLocalStore('token', res.data.token)
           //   // 成功更新权限
@@ -95,16 +102,16 @@ export default {
           //   setLocalStore('permission', obj)
           //   // 成功保存用户名
           //   setLocalStore('username', this.loginForm.username)
-          //   this.$router.push('manage')
+          this.$router.push('layout')
           // }
         } else {
           this.$notify.error({
             title: '错误',
             message: '请输入正确的用户名密码',
-            offset: 100 
+            offset: 100
           });
           return false;
-        } 
+        }
       });
     },
   },
@@ -122,38 +129,28 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  // background-color: #324057;
-  background-color: #000;
+  background-color: #324057;
 }
 .manage_tip {
+  position: absolute;
+  width: 100%;
+  top: -100px;
+  left: 0;
   p {
-    font-size: 32px;
+    font-size: 34px;
     color: #fff;
-    font-weight: bold;
   }
 }
 .form_contianer {
-  .wh(420px, 250px);
-  .ctp(420px, 250px);
-  top: 35%;
-  // padding: 25px;
+  .wh(370px, 220px);
+  .ctp(370px, 220px);
+  padding: 25px;
   border-radius: 5px;
   text-align: center;
+  background-color: #fff;
   .submit_btn {
     width: 100%;
     font-size: 16px;
-  }
-  /deep/ .el-input__inner {
-    background-color: rgba(100, 36, 36, 0.1);
-    // background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    color: #fff;
-    height: 50px;
-    line-height: 50px;
-  }
-
-  /deep/ .el-form-item__error {
-    color: #fff;
   }
 }
 .form-fade-enter-active,
@@ -164,15 +161,5 @@ export default {
 .form-fade-leave-active {
   transform: translate3d(0, -50px, 0);
   opacity: 0;
-}
-
-iframe {
-  width: 100%;
-  height: 100%;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial;
-  margin: 0px;
 }
 </style>
