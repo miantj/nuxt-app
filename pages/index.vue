@@ -10,7 +10,7 @@
 
       <transition name="fade-transform" mode="out-in">
         <keep-alive :exclude="cashViews">
-          <nuxt-child :key="key" />
+          <nuxt-child />
         </keep-alive>
       </transition>
     </section>
@@ -20,7 +20,7 @@
 <script>
 import headTop from '../components/headTop'
 import sidebar from '../components/sidebar'
-// import { mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   data () {
@@ -35,13 +35,17 @@ export default {
       title: '首页',
     }
   },
-
-  computed: {
-    key () {
-      return this.$route.path
-    },
+  created () {
+    if (!this.user) {
+      this.$router.push('login')
+    }
   },
   methods: {
+    computed: {
+      ...mapState([
+        'user'
+      ]),
+    },
     Collapse () {
       this.isCollapse = !this.isCollapse
     },

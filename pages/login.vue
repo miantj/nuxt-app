@@ -73,9 +73,6 @@ export default {
     this.showLogin = true;
 
   },
-  computed: {
-
-  },
   methods: {
     ...mapMutations([
       'USER'
